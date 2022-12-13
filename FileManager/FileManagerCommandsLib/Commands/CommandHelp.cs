@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace FileManagerComandsLib.Comands
 {
-    internal class CommandHelp : ICommands
+    internal class CommandHelp : IComands
     {
         public string ComandInfo()
         {
             return "Список команд с описанием";
         }
-
         private Dictionary<string, string> _comands = new Dictionary<string, string>()
         {
             {"Help","Help" },
@@ -24,12 +23,12 @@ namespace FileManagerComandsLib.Comands
 
         public Dictionary<string, string> ComandName()
         {
-            return  _comands;
+            return _comands;
         }
 
         public string Execute(string[] args)
         {
-            string message = $"-------------------------------------------- Основные команды ---------------------------------------------\n" +
+            string message = $"Основные команды\n" +
                 $"cd <путь> \t\t - перемещение по файловой системе\n" +
                 $"List \t\t\t - вывод списка файлов и папок в текущей директории постраничный\n" +
                 $"DFL <путь> \t\t - удаление указанного файла\n" +
@@ -39,9 +38,9 @@ namespace FileManagerComandsLib.Comands
                 $"tree \t\t\t - просмотр файловой системы из текущей директори постраничный\n" +
                 $"fi <путь> \t\t - вывод информации о файле. Путь относительный или полный\n" +
                 $"di <путь> \t\t - вывод информации о папке. Путь относительный или полный\n" +
-                $"!clear \t\t\t - очистка консоли\n" +
-                $"!help \t\t\t - вызов описания команд\n" +
-                $"-----------------------------------------------------------------------------------------------------------";
+                $"clear \t\t\t - очистка консоли\n" +
+                $"help \t\t\t - вызов описания команд\n";
+
             return message;
         }
     }

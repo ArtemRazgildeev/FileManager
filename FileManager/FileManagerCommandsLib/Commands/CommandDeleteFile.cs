@@ -8,28 +8,29 @@ using System.Threading.Tasks;
 
 namespace FileManagerComandsLib.Comands
 {
-    public class CommandDeleteFile : ICommands
+    public class CommandDeleteFile : IComands
     {
+
         public string ComandInfo()
         {
             return "Удаление файла";
         }
 
-        private Dictionary<string, string> _comands= new Dictionary<string, string>
+        private Dictionary<string, string> _comands = new Dictionary<string, string>
         {
             {"DeleteFile", "DeleteFile" },
             {"deletefile", "DeleteFile" },
-            {"DFL", "DeleteFile" },
-            {"dfl", "DeleteFile" }
+            {"DEL", "DeleteFile" },
+            {"del", "DeleteFile" }
         };
-
         public Dictionary<string, string> ComandName()
         {
             return _comands;
         }
-
         public string Execute(string[] args)
         {
+
+
             FileInfo fileInfo = new FileInfo(args[1]);
             try
             {
@@ -42,7 +43,11 @@ namespace FileManagerComandsLib.Comands
             {
                 Console.WriteLine(ex.Message);
             }
-            return $"File {fileInfo} deleted! ";   
-        }        
+
+            return $"File {fileInfo} deleted ";
+
+        }
+
+
     }
 }

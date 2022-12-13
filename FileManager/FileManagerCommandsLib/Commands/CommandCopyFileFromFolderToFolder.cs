@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace FileManagerComandsLib.Comands
 {
-    public class CommandCopyFileFromFolderToFolder : ICommands
+    public class CommandCopyFileFromFolderToFolder : IComands
     {
         public string ComandInfo()
         {
             return "Перемещение файла из папки в папку";
         }
-
         private Dictionary<string, string> _comands = new Dictionary<string, string>()
         {
             {"CopyFileFromFolderToFolder", "CopyFileFromFolderToFolder" },
@@ -20,7 +19,6 @@ namespace FileManagerComandsLib.Comands
             {"CFFF",                       "CopyFileFromFolderToFolder" },
             {"cfff",                       "CopyFileFromFolderToFolder" }
         };
-
         public Dictionary<string, string> ComandName()
         {
             return _comands;
@@ -41,10 +39,10 @@ namespace FileManagerComandsLib.Comands
                         string destFile = Path.Combine(args[2], fileName);
                         File.Copy(file, destFile, true);
                     }
-                    successful = "Успешно!!!";
+                    successful = "Успешно";
                 }
                 else
-                    successful = "Не удалось найти папку по указанному пути";
+                    successful = "Папка по заданному пути не найдена";
             }
             catch (Exception ex)
             {

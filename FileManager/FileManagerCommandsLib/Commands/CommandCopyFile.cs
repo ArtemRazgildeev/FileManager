@@ -7,19 +7,17 @@ using System.Threading.Tasks;
 
 namespace FileManagerComandsLib.Comands
 {
-    public class CommandCopyFile : ICommands
+    public class CommandCopyFile : IComands
     {
-        private CommandCopyFileFromFolderToFolder _cfff = new CommandCopyFileFromFolderToFolder();
+        private CommandCopyFileFromFolderToFolder _copyfile = new CommandCopyFileFromFolderToFolder();
         private string _pathFrom = "";
         private string _pathTo = "";
 
         private string[] _args = new string[3];
-
         public string ComandInfo()
         {
             return "Копирование файла из директории";
         }
-
         private Dictionary<string, string> _comands = new Dictionary<string, string>()
         {
              { "CopyFile", "CopyFile"},
@@ -27,32 +25,33 @@ namespace FileManagerComandsLib.Comands
              { "CF",       "CopyFile"},
              { "cf",       "CopyFile"}
         };
-
         public Dictionary<string, string> ComandName()
         {
             return _comands;
         }
 
+
         public string Execute(string[] args)
         {
+
             string successful = "";
             try
             {
                 if (File.Exists(args[1]))
                 {
-                    string[] pathFrom = args[1].ToString().Split('\\');
+                    string[] pathFrom = args[1].ToString().Split(' ');
                     for (int i = 0; i < pathFrom.Length - 1; i++)
                     {
                         if (i != pathFrom.Length - 2)
-                            _pathFrom += pathFrom[i] + "\\";
+                            _pathFrom += pathFrom[i] + " ";
                         else
                             _pathFrom += pathFrom[i];
                     }
-                    string[] pathTo = args[2].ToString().Split('\\');
+                    string[] pathTo = args[2].ToString().Split(' ');
                     for (int i = 0; i < pathTo.Length - 1; i++)
                     {
                         if (i != pathTo.Length - 2)
-                            _pathTo += pathTo[i] + "\\";
+                            _pathTo += pathTo[i] + " ";
                         else
                             _pathTo += pathTo[i];
                     }
@@ -63,13 +62,16 @@ namespace FileManagerComandsLib.Comands
                     }
                     else
                     {
-                        
+
                         _args[0] = "CFFF";
                         _args[1] = _pathFrom;
                         _args[2] = _pathTo;
-                        _cfff.Execute(_args); 
+                        _copyfile.Execute(_args);
+
                     }
-                    successful = "Успешно!";
+
+
+                    successful = "Успешно";
                 }
                 else
                     successful = "Не удалось скопировать файл";
@@ -78,6 +80,8 @@ namespace FileManagerComandsLib.Comands
             {
                 successful = ex.Message;
             }
+
+
             return successful;
         }
     }

@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace FileManagerComandsLib.Comands
 {
-    internal class CommandTree : ICommands
+    internal class CommandTree : IComands
     {
         private List<string> _treeList = new List<string>();
         public string ComandInfo()
         {
             return "просмотр дерева";
         }
-
         private Dictionary<string, string> _comands = new Dictionary<string, string>()
         {
             {"Tree", "Tree"},
@@ -21,12 +20,10 @@ namespace FileManagerComandsLib.Comands
             {"TR", "Tree"},
             {"tr", "Tree"}
         };
-
         public Dictionary<string, string> ComandName()
         {
             return _comands;
         }
-
         /// <summary>
         /// Дерево директории
         /// </summary>
@@ -44,16 +41,16 @@ namespace FileManagerComandsLib.Comands
             {
                 _treeList.Add(name);
             }
-        }
 
-        private void Tree (string path, int depth)
+        }
+        private void Tree(string path, int depth)
         {
             List<string> directories = Directory.GetDirectories(path).ToList();
             List<string> files = Directory.GetFiles(path).ToList();
             foreach (string name in directories)
             {
                 _treeList.Add(name);
-                Tree(name, depth+1);
+                Tree(name, depth + 1);
             }
             foreach (string name in files)
             {
@@ -61,6 +58,7 @@ namespace FileManagerComandsLib.Comands
             }
             foreach (string name in _treeList)
                 Console.WriteLine(name);
+
         }
 
         public string Execute(string[] args)
@@ -73,7 +71,7 @@ namespace FileManagerComandsLib.Comands
             }
             catch
             {
-                successful = "Провально";
+                successful = "Неудачно";
             }
             return successful;
         }

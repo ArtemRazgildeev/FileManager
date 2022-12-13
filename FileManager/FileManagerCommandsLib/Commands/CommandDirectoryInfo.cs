@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace FileManagerComandsLib.Comands
 {
-    internal class CommandDirectoryInfo:ICommands
+    internal class CommandDirectoryInfo:IComands
     {
         public string ComandInfo()
         {
             return "Информация о папке";
         }
-
         private Dictionary<string, string> _comands = new Dictionary<string, string>()
         {
             {"DirectoryInfo",    "DirectoryInfo" },
@@ -20,7 +19,6 @@ namespace FileManagerComandsLib.Comands
             {"di",               "DirectoryInfo" },
             {"directoryinfo",    "DirectoryInfo" }
         };
-
         public Dictionary<string, string> ComandName()
         {
             return _comands;
@@ -35,7 +33,9 @@ namespace FileManagerComandsLib.Comands
                $"|Создан: {directoryInfo.CreationTime}" +
                $"|Атрибуты: {directoryInfo.Attributes}" +
                $"\n Полный путь: {directoryInfo.FullName}";
+
             return str;
+
         }
     }
 }

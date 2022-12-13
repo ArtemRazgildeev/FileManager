@@ -12,7 +12,7 @@ namespace ComandsLib
         }
 
         private string[] _args;                 
-        private static List<ICommands> _comands = new List<ICommands>();
+        private static List<IComands> _comands = new List<IComands>();
 
         /// <summary>
         /// Автоматически создает лист команд
@@ -27,7 +27,7 @@ namespace ComandsLib
                     (type.IsAbstract == false)&&
                     (type.GetInterface("IComands")!=null))
                 {
-                    ICommands value = (ICommands)Activator.CreateInstance(type);
+                    IComands value = (IComands)Activator.CreateInstance(type);
                     _comands.Add(value);
                 }
             }
@@ -42,7 +42,7 @@ namespace ComandsLib
         {
             ParseComandString(comand);
             string result = "";
-            foreach (ICommands com in _comands)
+            foreach (IComands com in _comands)
             {
                 if (com.ComandName().ContainsKey(_args[0]))
                 {
@@ -84,7 +84,7 @@ namespace ComandsLib
         /// <returns></returns>
         public static string ComandsInfo()
         {
-            foreach (ICommands com in _comands)
+            foreach (IComands com in _comands)
                 return com.ComandInfo();
             return "";
         }

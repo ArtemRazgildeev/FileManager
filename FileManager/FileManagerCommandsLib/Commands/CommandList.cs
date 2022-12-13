@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace FileManagerComandsLib.Comands
 {
-    internal class CommandList : ICommands
+    internal class CommandList : IComands
     {
-        string _printList ="";
-
+        string _printList = "";
         public string ComandInfo()
         {
             return "Список папок и файлов";
         }
-
         private Dictionary<string, string> _comands = new Dictionary<string, string>()
         {
             {"List", "List"},
@@ -23,7 +21,6 @@ namespace FileManagerComandsLib.Comands
             {"LS", "List"},
             {"ls", "List"}
         };
-
         public Dictionary<string, string> ComandName()
         {
             return _comands;
@@ -31,18 +28,19 @@ namespace FileManagerComandsLib.Comands
 
         public string Execute(string[] args)
         {
+
             DirectoryInfo dirInfo = new DirectoryInfo(args[1]);
             DirectoryInfo[] foldersList = dirInfo.GetDirectories();
             FileInfo[] filesList = dirInfo.GetFiles();
             try
             {
-                if (foldersList.Length > 0) _printList += ("__________Папки__________" + "\n");
+                if (foldersList.Length > 0) _printList += ("Папки" + "\n");
                 foreach (DirectoryInfo folder in foldersList)
                 {
                     string message = folder.Name;
                     _printList += (message + "\n");
                 }
-                if (filesList.Length > 0) _printList += ("__________Файлы__________" + "\n");
+                if (filesList.Length > 0) _printList += ("Файлы" + "\n");
                 foreach (FileInfo file in filesList)
                 {
                     string message = file.Name;
@@ -53,7 +51,9 @@ namespace FileManagerComandsLib.Comands
             {
                 Console.WriteLine(ex.Message);
             }
-            return _printList;   
+
+            return _printList;
+
         }
     }
 }

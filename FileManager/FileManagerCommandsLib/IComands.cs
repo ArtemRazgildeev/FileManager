@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManagerComandsLib.Comands
 {
-    public interface ICommands
+    public interface IComands
     {
         /// <summary>
         /// Метод выполнить

@@ -8,18 +8,16 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace FileManagerComandsLib.Comands
 {
-    internal class CommandCD : ICommands
+    internal class CommandCD : IComands
     {
         public string ComandInfo()
         {
             return "CD";
         }
-
         private Dictionary<string, string> _comands = new Dictionary<string, string>()
         {
             {"CD", "CD" }
         };
-
         public Dictionary<string, string> ComandName()
         {
             return _comands;
@@ -30,6 +28,8 @@ namespace FileManagerComandsLib.Comands
             string successful = "";
             try
             {
+
+
                 Directory.SetCurrentDirectory(args[1]);
                 Console.WriteLine(Directory.GetCurrentDirectory());
                 string dllPath = Assembly.GetExecutingAssembly().Location;
@@ -39,7 +39,7 @@ namespace FileManagerComandsLib.Comands
             }
             catch
             {
-                successful = "Провально";
+                successful = "Неудачно";
             }
             return successful;
         }
